@@ -1,0 +1,105 @@
+!
+hostname PrincipalOffice
+!
+!
+!
+!
+ip dhcp excluded-address 192.168.60.1 192.168.60.10
+!
+ip dhcp pool PrincipalOffice
+ network 192.168.60.0 255.255.255.0
+ default-router 192.168.60.4
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username HOD password 0 HP
+username account password 0 PA
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.60.4 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial1/0
+ ip address 192.168.70.4 255.255.255.0
+ encapsulation ppp
+ ppp authentication chap
+ ip ospf authentication
+ ip ospf message-digest-key 4 md5 HP
+!
+interface Serial1/1
+ ip address 192.168.50.4 255.255.255.0
+ encapsulation ppp
+ ppp authentication chap
+ ip ospf authentication
+ ip ospf message-digest-key 3 md5 PA
+ clock rate 2000000
+!
+interface Serial1/2
+ ip address 192.168.100.4 255.255.255.0
+ clock rate 2000000
+!
+interface Serial1/3
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 4
+ log-adjacency-changes
+ network 0.0.0.0 255.255.255.255 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+no cdp run
+!
+!
+!
+!
+snmp-server community Principal RO
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end

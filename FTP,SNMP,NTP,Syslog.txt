@@ -1,0 +1,23 @@
+Configure FTP,Syslog,SNMP,NTP
+
+FTP server 
+ftp server address for eg: ftp 192.168.1.1
+create file in your pc 
+to send files in ftp server :put hello.txt
+
+to configure syslog server
+logging host ip add of server
+logging trap debugging
+
+to configure ntp
+ntp server serverip
+to authenticate
+ntp authentication-key 1 md5 serverpassword
+ntp trusted-key 1
+ntp server 192.168.10.6 key 1
+
+to configure SNMP
+smtp pc-create user
+email server-add user
+dns server- add domain and ip of email server
+smtp and pc's pr dns server ka ip dena h
